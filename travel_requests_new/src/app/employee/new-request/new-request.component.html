@@ -1,0 +1,122 @@
+<app-navbar></app-navbar>
+<section class="bg-refl">
+    <section class="row">
+        <section class="col-md-2">
+            <!-- This is the sidebar section -->
+        </section>
+        <section class="col-md-8 mt-3 mb-3 rounded ">
+            <span class="text-white display-6"> New Travel request </span>
+        </section>
+        <!-- This is the middle section -->
+    </section>
+    <section class="row">
+        <section class="col-md-2">
+            <!-- Nav section -->
+        </section>
+        <section class="col-md-8 bg-dark text-white text-black rounded p-5 ">
+            <form class="d-flex flex-wrap" [formGroup]="newRequest" (ngSubmit)="onSubmit()">
+                <section class="mb-3 row col-md-3">
+                    <label for="managerName" class="form-label">Manager Name</label>
+                    <input type="text" class="form-control" id="managerName" placeholder="" value = "{{managerName}}" readonly>
+                </section>
+                <section class="mb-3 row">
+                    <section class="col-md-3">
+                        <label for="from" class="form-label">From</label>
+                        <input type="text" class="form-control" id="from" placeholder="" required
+                            formControlName="from">
+                    </section>
+                    <section class="col-md-3">
+                        <label for="to" class="form-label">To</label>
+                        <input type="text" class="form-control" id="to" placeholder="" required formControlName="to">
+                    </section>
+                    <section class="col-md-3">
+                        <label for="departureDate" class="form-label">Departure Date</label>
+                        <input type="date" class="form-control" id="departureDate" required
+                            formControlName="departureDate">
+                    </section>
+                    <section class="col-md-3">
+                        <label for="returnDate" class="form-label">Return Date</label>
+                        <input type="date" class="form-control" id="returnDate" required formControlName="returnDate">
+                    </section>
+                </section>
+                <section class="mb-3 row">
+                    <section class="col-md-6 m-2">
+                        <label class="form-label">Accommodation</label>
+                        <section class="form-check form-check-inline mx-4">
+                            <input class="form-check-input" type="radio" name="accommodation" id="accomodation"
+                                value="yes" required formControlName="accommodation">
+                            <label class="form-check-label" for="accommodationYes">Yes</label>
+                        </section>
+                        <section class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="accommodation" id="accommodationNo"
+                                value="no" required formControlName="accommodation">
+                            <label class="form-check-label" for="accommodationNo">No</label>
+                        </section>
+                    </section>
+                    <label for="to" class="form-label col-md-3"></label>
+                    <input type="text" class="form-control" id="accommodation_loc" placeholder="If yes, specify"
+                        formControlName="accommodation_loc">
+                    <section class="col-md-6 mt-3">
+                        <label for="travelMode" class="form-label">Travel Mode</label>
+                        <select class="form-select" id="travelMode" formControlName="travelMode">
+                            <option>Select any one</option>
+                            <option value = "air">Air</option>
+                            <option value="train">Train</option>
+                            <option value="bus">Bus</option>
+                            <option value="car">Car</option>
+                        </select>
+                    </section>
+                </section>
+                <section class="mb-3 row">
+                    <section class="col-md-12">
+                        <label for="purpose" class="form-label">Purpose</label>
+                        <textarea class="form-control" id="purpose" rows="3"
+                            placeholder="Enter the purpose of your travel" required
+                            formControlName="purpose"></textarea>
+                    </section>
+                    <section class="mb-3 row mt-3">
+                        <label for="notes" class="form-label">Additional Notes</label>
+                        <textarea class="form-control" id="notes" rows="3" placeholder="Enter any additional notes"
+                            formControlName="additionalNotes"></textarea>
+                    </section>
+                    <section class="row">
+                        <section class="col-md-4">
+                            <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                                data-bs-target="#exampleModal2">Back</button>
+                            <button type="submit" class="btn btn-success" data-bs-toggle="modal"
+                                data-bs-target="#exampleModal">Submit</button>
+                            <!-- Modal -->
+                            <section class="modal fade text-dark" id="exampleModal" tabindex="-1"
+                                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <section class="modal-dialog">
+                                    <section class="modal-content">
+                                        <section class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Success</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                        </section>
+                                        <section class="modal-body">
+                                            Travel request sent to Manager for approval
+                                        </section>
+                                        <section class="modal-footer">
+                                            <a href="emp_requests.html"><button type="button" class="btn btn-secondary"
+                                                    data-bs-dismiss="modal">Home</button></a>
+                                            <a href="emp_viewreq.html"><button type="button"
+                                                    class="btn btn-primary">View
+                                                    Request</button></a>
+                                        </section>
+                                    </section>
+                                </section>
+                            </section>
+                        </section>
+                    </section>
+                </section>
+            </form>
+
+        </section>
+        <section class="col-md-2">
+
+
+        </section>
+    </section>
+</section>

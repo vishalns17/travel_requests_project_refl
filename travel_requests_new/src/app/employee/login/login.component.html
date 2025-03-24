@@ -1,0 +1,62 @@
+<section class="bg-refl loginsection">
+    <app-plain-navbar></app-plain-navbar>
+    <section class="row bg-refl">
+        <section class="col-md-6">
+        </section>
+        <section class="col-md-6">
+            <section class="card bg-black text-white vh-100">
+                <section class="card-body mt-5">
+                    <!-- Login section -->
+                    <h2 class="card-title mt-5 px-5 mb-3 mx-auto">Employee Login</h2>
+
+                    <form [formGroup]="loginForm" (ngSubmit)="onLogin()" class="px-5">
+                        <section class="form-group mx-2 my-1">
+                            <label for="exampleInputEmail1">Username</label>
+                            <input type="email" formControlName="username" class="form-control" id="exampleInputEmail1"
+                                aria-describedby="emailHelp" placeholder="Enter username" required
+                                [ngClass]="{ 'is-invalid': loginForm.get('username')?.invalid && loginForm.get('username')?.dirty}">
+                            <span
+                                *ngIf="loginForm.get('username')?.errors?.['required']&&loginForm.get('username')?.dirty else showSpan"
+                                class="invalid-feedback">Username is required</span>
+                            <ng-template #showSpan>
+                                <br>
+                            </ng-template>
+
+                        </section>
+
+                        <section class="form-group mx-2 my-1">
+                            <label for="exampleInputPassword1">Password</label>
+                            <input type="password" formControlName="password" class="form-control"
+                                id="exampleInputPassword1" placeholder="Password" required
+                                [ngClass]="{ 'is-invalid': loginForm.get('password')?.invalid && loginForm.get('password')?.dirty} ">
+                            <span
+                                *ngIf="loginForm.get('password')?.errors?.['required']&&loginForm.get('password')?.dirty else showSpan"
+                                class="invalid-feedback">Password is required</span>
+                            <ng-template #showSpan>
+                                <br>
+                            </ng-template>
+
+                        </section>
+
+                        <button type="submit" class="btn btn-primary px-5 m-5" [disabled]="loading">
+                            <span *ngIf="!loading">Login</span>
+                            <span *ngIf="loading">Logging in...</span>
+                        </button>
+                    </form>
+
+                    <section class="row bg-black text-black mt-4">
+                        <p>
+                            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptatibus, aliquam officia
+                            dignissimos, amet, nobis repellendus incidunt reprehenderit voluptate veniam
+                            veritatis mollitia facilis nulla culpa quos sapiente perspiciatis et illum a! Lorem ipsum
+                            dolor sit amet, consectetur adipisicing elit. Expedita obcaecati iusto maiores repellendus
+                            voluptatum fuga error velit voluptates labore ullam modi accusantium, perferendis eos,
+                            aliquam
+                            quasi molestias porro exercitationem accusamus.
+                        </p>
+                    </section>
+                </section>
+            </section>
+        </section>
+    </section>
+</section>

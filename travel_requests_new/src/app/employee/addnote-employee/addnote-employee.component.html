@@ -1,0 +1,124 @@
+<app-navbar></app-navbar>
+<section class="container-fluid bg-refl">
+    <section class="row">
+        <section class="col-md-12">
+            <!-- Background Row -->
+            <section class="row bg-black bg-opacity-55"></section>
+            
+            <section class="row">
+                <section class="col-md-8 mx-auto my-2">
+                    <span class="text-white display-6">Travel Request #{{request.id}}</span>
+                </section>
+            </section>
+
+            <!-- Main Form Section -->
+            <section class="row">
+                <section class="col-lg-2 col-md-2">
+                    <!-- Sidebar Section (empty for now) -->
+                </section>
+                <section class="col-md-8 bg-white text-black rounded px-4 py-5">
+                    <!-- Form Start -->
+                    <form class="d-flex flex-column">
+
+                        <!-- Manager Information -->
+                        <div class="mb-4 row">
+                            <div class="col-md-12">
+                                <label for="managerName" class="form-label">Manager Name</label>
+                                <input type="text" class="form-control" id="managerName" value="{{request.manager.name}}" disabled>
+                            </div>
+                        </div>
+
+                        <!-- Trip Details -->
+                        <div class="mb-4 row">
+                            <div class="col-md-3">
+                                <label for="from" class="form-label">From</label>
+                                <input type="text" class="form-control" id="from" value="{{request.from_location}}" disabled>
+                            </div>
+                            <div class="col-md-3">
+                                <label for="to" class="form-label">To</label>
+                                <input type="text" class="form-control" id="to" value="{{request.to_location}}" disabled>
+                            </div>
+                            <div class="col-md-3">
+                                <label for="departureDate" class="form-label">Departure Date</label>
+                                <input type="date" class="form-control" id="departureDate" value="{{request.departure_date}}" disabled>
+                            </div>
+                            <div class="col-md-3">
+                                <label for="returnDate" class="form-label">Return Date</label>
+                                <input type="date" class="form-control" id="returnDate" value="{{request.return_date}}" disabled>
+                            </div>
+                        </div>
+
+                        <!-- Accommodation Section -->
+                        <div class="mb-4 row">
+                            <div class="col-md-6">
+                                <label class="form-label">Accommodation</label>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="accommodation" id="accommodationYes" value="yes" [checked]="request.accommodation !== null " disabled>
+                                    <label class="form-check-label" for="accommodationYes">Yes</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="accommodation" id="accommodationNo" value="no" [checked]="request.accommodation === null " disabled>
+                                    <label class="form-check-label" for="accommodationNo">No</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Travel Mode -->
+                        <div class="mb-4 row">
+                            <div class="col-md-6">
+                                <label for="travelMode" class="form-label">Travel Mode</label>
+                                <select class="form-select" id="travelMode" disabled>
+                                    <option [selected]="request.travel_mode === 'Air'">Air</option>
+                                    <option [selected]="request.travel_mode === 'Train'">Train</option>
+                                    <option [selected]="request.travel_mode === 'Bus'">Bus</option>
+                                    <option [selected]="request.travel_mode === 'Car'">Car</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Purpose and Notes -->
+                        <div class="mb-4 row">
+                            <div class="col-md-12">
+                                <label for="purpose" class="form-label">Purpose</label>
+                                <textarea class="form-control" id="purpose" rows="3" placeholder="Client meeting" disabled>{{request.purpose}}</textarea>
+                            </div>
+                        </div>
+
+                        <div class="mb-4 row">
+                            <div class="col-md-12">
+                                <label for="notes" class="form-label">Additional Notes</label>
+                                <textarea class="form-control" id="notes" rows="3" placeholder="Nil" disabled>{{request.additional_note}}</textarea>
+                            </div>
+                        </div>
+
+                        <div *ngIf="request.status==='update'" class="mb-4 row">
+                            <div class="col-md-12">
+                                <label for="notes" class="form-label">Update Note</label>
+                                <textarea class="form-control" id="notes" name="employee_note" [(ngModel)]="additionalNotes" rows="3" placeholder="Nil"></textarea>
+                            </div>
+                            <p class="text-danger">Debug: {{ additionalNotes }}</p>
+                        </div>
+
+                        <div class="mb-4 row">
+                            <div class="col-md-12">
+                                <label for="managerNotes" class="form-label">Manager Note</label>
+                                <textarea class="form-control" id="managerNotes" rows="2" placeholder="Nil" disabled>{{request.manager_note}}</textarea>
+                            </div>
+                        </div>
+
+                        <!-- Action Buttons -->
+                        <div class="row justify-content-center">
+                            <div class="col-md-4 text-center">
+                                <button *ngIf ="request.status=== 'pending'"
+                                type="button" class="btn btn-danger m-2 w-100">Delete</button>
+                                <button (click)=onUpdateNote(additionalNotes) type="button" class="btn btn-success m-2 w-100">Save Note</button>
+                                <button type="button" class="btn btn-warning m-2 w-100">Edit</button>
+                            </div>
+                        </div>
+                    </form>
+                    <!-- Form End -->
+                </section>
+            </section>
+        </section>
+    </section>
+</section>

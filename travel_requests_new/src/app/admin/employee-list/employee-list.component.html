@@ -1,0 +1,70 @@
+
+<body class="bg-refl">
+    <section class="container-fluid">
+        <section class="row">
+            <section class="col-md-12">
+
+                <app-navbar></app-navbar>
+
+                <section class="row">
+                    <section class="col-md-2">
+                        <!-- Sidebar -->
+                    </section>
+                    <section class="col-md-8 mt-5 mb-3 rounded">
+                        <span class="text-white display-6">Employees</span>
+                    </section>
+                </section>
+
+                <section class="row">
+                    <section class="col-md-2">
+                        <!-- Right section -->
+                    </section>
+                    <section class="col-md-8 bg-white text-black rounded px-5 py-3">
+                        <!-- <section class="col-md-12 d-flex justify-content-center mt-1 mb-2">
+                            <input type="text" class="form-control" id="to" placeholder="Search">
+                            <button type="button" class="btn btn-light dropdown-toggle mx-5 btn-sm rounded" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Sort By Name
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <li><a class="dropdown-item" href="#">Ascending</a></li>
+                                <li><a class="dropdown-item" href="#">Descending</a></li>
+                            </ul>
+                            <a href="admin_addemp.html">
+                                <button type="button" class="btn btn-warning btn-sm"><i class="bi bi-plus-circle"></i></button>
+                            </a>
+                        </section> -->
+
+                        <section class="table-responsive">
+                            <!-- Employee Table -->
+                            <a routerLink="../addemployee"><button type="button" class="btn btn-warning btn-sm my-2"><i class="bi bi-plus-circle"></i></button></a>
+                            <table class="table table-hover table-striped">
+                                <thead class="table-dark">
+                                    <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">Employee ID</th>
+                                        <th scope="col">Employee Name</th>
+                                        <th scope="col">Manager Name</th>
+                                        <th scope="col">Email</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor='let request of requests;let i = index'>
+                                        <th scope="row">{{request.id}}</th>
+                                        <td>{{request.user}}</td>
+                                        <td>{{request.name}}</td>
+                                        <td>{{request.manager.name}}</td>
+                                        <td>{{request.email}}</td>
+                                    </tr>
+                                    <!-- Repeat rows as needed -->
+                                </tbody>
+                            </table>
+                        </section>
+                    </section>
+                    <section class="col-md-2">
+                        <!-- Right sidebar (if needed) -->
+                    </section>
+                </section>
+            </section>
+        </section>
+    </section>
+</body>

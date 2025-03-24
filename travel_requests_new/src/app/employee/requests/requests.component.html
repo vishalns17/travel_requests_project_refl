@@ -1,0 +1,143 @@
+<section class="bg-refl">
+    <section class="row">
+        <section class="col-md-1">
+            <!-- This is the sidebar section -->
+        </section>
+    <section class="col-md-8 mt-4 mb-4 d-flex justify-content-between align-items-between">
+        <span class="text-white display-6 mb-2 m-sm-1">All requests</span>
+        <a routerLink="newrequest"><button type="button" class="btn btn-info btn-sm d-inline-block ms-auto">New
+                Request</button></a>
+                <button type="button" class="btn btn-secondary btn-sm d-inline-block h-50 mb-3 mt-3 px-3 py-1" (click)="resetFilters()">
+                    Clear Filters
+                </button>
+        <!-- Filter in modal for small devices -->
+        <span><button type="button" class="btn btn-primary btn-sm d-inline-block d-sm-none" data-bs-toggle="modal"
+                data-bs-target="#filterModal">
+                Filter
+            </button></span>
+        <section class="modal fade" id="filterModal" tabindex="-1" aria-labelledby="filterModalLabel"
+            aria-hidden="true">
+            <section class="modal-dialog">
+                <section class="modal-content">
+                    <section class="modal-header">
+                        <h5 class="modal-title" id="filterModalLabel">Date Filter</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </section>
+                    <section class="modal-body">
+                        <form>
+                            <section class="mb-3">
+                                <label for="from" [(ngModel)]="fromDate" (change)="dateFilter()"
+                                    class="form-label">From</label>
+                                <input type="date" class="form-control" id="from" required>
+                            </section>
+                            <section class="mb-3">
+                                <label for="to" class="form-label">To</label>
+                                <input type="date" [(ngModel)]="toDate" (change)="dateFilter()" class="form-control"
+                                    id="to" required>
+                            </section>
+                        </form>
+                    </section>
+                    <section class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Apply Filter</button>
+                    </section>
+                </section>
+            </section>
+        </section>
+    </section>
+
+    <section class="row">
+        <section class="col-md-1">
+            <!-- Left col section -->
+        </section>
+        <!-- Main requests table -->
+        <section class="col-md-8 bg-light vh-100 rounded">
+            <section class="table-responsive">
+                <table class="table table-hover table-striped rounded">
+                    <thead class="table-light">
+                        <tr>
+                            <th scope="col">Request ID</th>
+                            <th scope="col"><button type="button" class="btn btn-primary dropdown-toggle mx-1 btn-sm"
+                                    id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true"
+                                    aria-expanded="false">
+                                    Submitted on
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                    <li><a class="dropdown-item" (click)="dateSort('asc')">Ascending</a></li>
+                                    <li><a class="dropdown-item" (click)="dateSort('desc')">Descending</a></li>
+                                </ul>
+                            </th>
+                            <th scope="col">Reason</th>
+                            <th scope="col">From</th>
+                            <th scope="col">To</th>
+
+                            <th scope="col">From Date</th>
+                            <th scope="col">Ret. Date</th>
+                            <th scope="col"><button type="button"
+                                    class="btn btn-primary dropdown-toggle rounded mx-1 btn-sm" id="dropdownMenuButton"
+                                    data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Status
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                    <li><a class="dropdown-item" (click)="statusFilter('approved')">Approved</a></li>
+                                    <li><a class="dropdown-item" (click)="statusFilter('pending')">Pending</a></li>
+                                    <li><a class="dropdown-item" (click)="statusFilter('update')">Update
+                                            Required</a></li>
+                                    <li><a class="dropdown-item" (click)="statusFilter('closed')">Closed</a></li>
+                                    <li><a class="dropdown-item" (click)="statusFilter('rejected')">Rejected</a></li>
+                                    <li><a class="dropdown-item" (click)="statusFilter('')">All</a></li>
+                                </ul>
+                            </th>
+                            <th scope="col">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor='let request of requests;let i = index'>
+                            <th scope="row">{{request.id}}</th>
+                            <td>{{request.date_submitted | date : 'dd/MM/yyyy'}}</td>
+                            <td>{{request.purpose}}</td>
+                            <td>{{request.from_location}}</td>
+                            <td>{{request.to_location}}</td>
+                            <td>{{request.departure_date| date : 'dd/MM/yyyy'}}</td>
+                            <td>{{request.return_date | date : 'dd/MM/yyyy'}}</td>
+
+                            <td [ngClass]="{
+                                'text-success': request.status === 'approved',
+                                'text-warning': request.status === 'pending',
+                                'text-danger': ['cancelled', 'rejected'].includes(request.status),
+                                'text-primary': request.status === 'update'
+                            }">
+                              {{ request.status | titlecase }}
+                            </td>
+
+                            <td>
+                                <a (click)="jumptoEditRequest(request.id)">
+                                    <button type="button" class="btn btn-warning btn-sm m-1">Edit</button></a>
+
+                                <a *ngIf ="request.status=== 'update requested'" (click)="jumptoAddnote(request.id)">
+                                    <button type="button" class="btn btn-info btn-sm m-1">+Note</button></a>
+
+                                <a (click)="jumptoRequest(request.id)">
+                                    <button type="button" class="btn btn-info btn-sm m-1">View</button></a>
+
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+        </section>
+        <section class="col-md-2 d-none d-md-block  ">
+            <!-- Filters card -->
+            <section class="card bg-dark text-white" style="width: 18rem;">
+                <section class="card-body">
+                    <h5 class="card-title ">Filters</h5>
+                    <label id="from" aria-label="from location">From</label>
+                    <input class="d-block" [(ngModel)]="fromDate" (change)="dateFilter()" id="from" type="date">
+                    <label class="d-block" id="to" aria-label="to location">To</label>
+                    <input class="d-block" [(ngModel)]="toDate" (change)="dateFilter()" id="form" type="date">
+                </section>
+            </section>
+
+        </section>
+    </section>
+</section>
