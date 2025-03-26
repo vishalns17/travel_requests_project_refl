@@ -1,0 +1,34 @@
+<app-plain-navbar></app-plain-navbar>
+
+<section class="row bg-refl">
+    <section class="col-md-6">
+    </section>
+    <section class="col-md-6">
+        <section class="card bg-black text-white vh-100">
+            <section class="card-body mt-5">
+                <h2 class="card-title mt-5 px-5 mb-3 mx-auto">Admin Login</h2>
+
+                <!-- ✅ Form should wrap all form fields -->
+                <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
+                    
+                    <section class="form-group px-5">
+                        <label for="exampleInputEmail1">Email address</label>
+                        <input type="email" formControlName="username" class="form-control" id="exampleInputEmail1" 
+                               aria-describedby="emailHelp" placeholder="Enter email or username">
+                    </section>
+
+                    <section class="form-group px-5">
+                        <label for="exampleInputPassword1">Password</label>
+                        <input type="password" formControlName="password" class="form-control" id="exampleInputPassword1" 
+                               placeholder="Password">
+                    </section>
+                    <section class="text-center">
+                        <button type="submit" class="btn btn-primary px-5 m-5">Login</button>
+                    </section>
+
+                </form>
+                
+            </section>
+        </section>
+    </section>
+</section>

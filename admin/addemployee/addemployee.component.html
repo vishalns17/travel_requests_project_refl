@@ -1,0 +1,86 @@
+<app-navbar></app-navbar>
+
+<body class="bg-refl">
+    <section class="col-md-12">
+        <section class="row">
+            <section class="col-md-2">
+                <!-- This is the sidebar section -->
+            </section>
+            <section class="col-md-8 mt-2 mb-3 rounded ">
+                <span class="text-white display-6">Add employee</span>
+
+
+            </section>
+            <!-- This is the middle section -->
+
+        </section>
+        <section class="row justify-content-center">
+            <section class="col-md-8 bg-white text-black rounded px-5 py-4">
+                <form class="w-100" [formGroup]="employeeForm">
+                    <section class="mb-4">
+                        <label for="name" class="form-label">Employee Name</label>
+                        <input type="text" formControlName="name" class="form-control form-control" id="name"
+                            placeholder="Enter employee name">
+                    </section>
+
+                    <section class="mb-4">
+                        <label for="manager" class="form-label">Manager Name</label>
+                        <select class="form-select" id="travelMode" formControlName="manager">
+                            <option>Select Manager</option>
+                            <option *ngFor="let request of requests" [value]="request.id">Manager Id {{request.id}} :
+                                {{request.name}}</option>
+                        </select>
+                    </section>
+
+                    <section class="mb-4">
+                        <label for="email" class="form-label">Email</label>
+                        <input type="email" formControlName="email" class="form-control form-control" id="email"
+                            placeholder="Enter email">
+                    </section>
+
+                    <section class="mb-4">
+                        <label for="email" class="form-label">Username</label>
+                        <input type="email" formControlName="username" class="form-control form-control" id="username"
+                            placeholder="Enter username">
+                    </section>
+
+                    <section class="mb-4">
+                        <label for="pass" class="form-label">Password</label>
+                        <input type="password" formControlName="password" class="form-control form-control" id="pass"
+                            placeholder="Enter password">
+                        <span>{{errors}}</span>
+                    </section>
+
+                    <div class="modal" id="successModal" tabindex="-1" role="dialog">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title">Add Employee</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <p>Successfully Added Employee</p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" data-bs-dismiss="modal" class="btn btn-primary">Add another</button>
+                                    <button type="button" data-bs-dismiss="modal" (click)="closeModalAndNavigate()" (keydown.enter)="closeModalAndNavigate()" class="btn btn-secondary">Back</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <section class="d-flex justify-content-center mt-4">
+                        <button routerLink="../employeelist" type="button" class="btn btn-danger btn mx-3"
+                            data-bs-toggle="modal" data-bs-target="#exampleModal2">Back</button>
+                        <button type="submit" (click)="onSubmit()" class="btn btn-primary btn mx-3">Submit</button>
+
+                    </section>
+                </form>
+            </section>
+        </section>
+
+
+    </section>
+</body>

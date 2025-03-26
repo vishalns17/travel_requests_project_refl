@@ -1,0 +1,16 @@
+
+app-root {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Ensures it fills at least the viewport height */
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+html, body {
+    height: 100%;
+}
