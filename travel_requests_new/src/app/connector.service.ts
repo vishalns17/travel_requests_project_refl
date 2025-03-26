@@ -270,7 +270,7 @@ export class ConnectorService {
 
   }
 
-  storeManager(managerName: any) {
+  storeManagfer(managerName: any) {
     localStorage.setItem('manager', managerName);
     console.log("Manager is ",managerName)
   }
@@ -278,6 +278,7 @@ export class ConnectorService {
   getManager():string | null {
     return localStorage.getItem('manager');
   }
+  
 
   updateRequest(requestId: number, requestData: any='') {
     const url = `http://127.0.0.1:8000/manager/request/${requestId}/edit`;

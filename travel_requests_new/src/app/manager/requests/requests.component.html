@@ -65,8 +65,8 @@
                                     Submitted on
                                 </button>
                                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                    <li><a class="dropdown-item" (click)="dateSort('asc')">Ascending</a></li>
-                                    <li><a class="dropdown-item" (click)="dateSort('desc')">Descending</a></li>
+                                    <li><a class="dropdown-item" (keydown.enter)="dateSort('asc')" (click)="dateSort('asc')">Ascending</a></li>
+                                    <li><a class="dropdown-item" (keydown.enter)="dateSort('desc')" (click)="dateSort('desc')">Descending</a></li>
                                 </ul>
                             </th>
                             <th scope="col">Employee Name</th>
@@ -82,13 +82,13 @@
                                     Status
                                 </button>
                                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                    <li><a class="dropdown-item" (click)="statusFilter('approved')">Approved</a></li>
-                                    <li><a class="dropdown-item" (click)="statusFilter('pending')">Pending</a></li>
-                                    <li><a class="dropdown-item" (click)="statusFilter('update required')">Update
+                                    <li><a class="dropdown-item" (keydown.enter)="statusFilter('approved')" (click)="statusFilter('approved')">Approved</a></li>
+                                    <li><a class="dropdown-item" (keydown.enter)="statusFilter('pending')" (click)="statusFilter('pending')">Pending</a></li>
+                                    <li><a class="dropdown-item" (keydown.enter)="statusFilter('update required')" (click)="statusFilter('update required')">Update
                                             Required</a></li>
-                                    <li><a class="dropdown-item" (click)="statusFilter('closed')">Closed</a></li>
-                                    <li><a class="dropdown-item" (click)="statusFilter('rejected')">Rejected</a></li>
-                                    <li><a class="dropdown-item" (click)="statusFilter('')">All</a></li>
+                                    <li><a class="dropdown-item" (keydown.enter)="statusFilter('closed')" (click)="statusFilter('closed')">Closed</a></li>
+                                    <li><a class="dropdown-item" (keydown.enter)="statusFilter('rejected')" (click) = "statusFilter('rejected')">Rejected</a></li>
+                                    <li><a class="dropdown-item" (keydown.enter)="statusFilter('')" (click)="statusFilter('')">All</a></li>
                                 </ul>
                             </th>
                             <th scope="col">Action</th>
@@ -120,10 +120,9 @@
                                 <!-- <a  (click)="jumptoAddnote(request.id)">
                                     <button type="button" class="btn btn-info btn-sm m-1 w-100">+Note</button></a> -->
 
-                                <a (click)="jumptoRequest(request.id)">
+                                <a (keydown.enter)="jumptoRequest(request.id)" (click)="jumptoRequest(request.id)">
                                     <button type="button"  class="btn btn-warning btn-sm m-1 w-100">View</button></a>
 
-                            </td>
                         </tr>
                     </tbody>
                 </table>
@@ -134,9 +133,9 @@
             <section class="card bg-dark text-white" style="width: 18rem;">
                 <section class="card-body">
                     <h5 class="card-title ">Filters</h5>
-                    <label id="from" aria-label="from location">From</label>
+                    <label for="from" id="from" aria-label="from location">From</label>
                     <input class="d-block" [(ngModel)]="fromDate" (change)="dateFilter()" id="from" type="date">
-                    <label class="d-block" id="to" aria-label="to location">To</label>
+                    <label for="to" class="d-block" id="to" aria-label="to location">To</label>
                     <input class="d-block" [(ngModel)]="toDate" (change)="dateFilter()" id="form" type="date">
                 </section>
             </section>

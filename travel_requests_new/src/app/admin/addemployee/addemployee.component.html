@@ -65,7 +65,7 @@
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" data-bs-dismiss="modal" class="btn btn-primary">Add another</button>
-                                    <button type="button" data-bs-dismiss="modal" (click)="closeModalAndNavigate()" class="btn btn-secondary">Back</button>
+                                    <button type="button" data-bs-dismiss="modal" (click)="closeModalAndNavigate()" (keydown.enter)="closeModalAndNavigate()" class="btn btn-secondary">Back</button>
                                 </div>
                             </div>
                         </div>

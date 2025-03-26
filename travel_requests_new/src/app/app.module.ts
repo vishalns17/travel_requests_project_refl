@@ -8,7 +8,7 @@ import { UserSelectionComponent } from './user-selection/user-selection.componen
 import { SelectionBoxComponent } from './selection-box/selection-box.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { PlainNavbarComponent } from './plain-navbar/plain-navbar.component';
+// import { PlainNavbarComponent } from './plain-navbar/plain-navbar.component';
 import { SharedModule } from './shared/shared.module';
 
 @NgModule({
